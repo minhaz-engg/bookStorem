@@ -1,0 +1,21 @@
+{% extends "../sub_base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Register Account{% endblock %}
+{% block sub_content %}
+
+<form class="account-form" action="." method="post">
+  {% csrf_token %}
+  <h3 class="mb-2">Create an account</h3>
+  <p class="mb-4">It's free and only takes a minute.</p>
+
+    {% csrf_token %}
+    {{ form|crispy }}
+
+  <button class="btn btn-primary btn-block py-2 my-2 fw500 w-100" type="submit">Register</button>
+
+  <p class="text-center">
+    <a href="{% url "account:login" %}">Already have an account?</a>
+  </p>
+</form>
+
+{% endblock %}

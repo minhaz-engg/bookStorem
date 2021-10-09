@@ -1,0 +1,27 @@
+{% extends "./sub_base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Log-in{% endblock %}
+{% block sub_content %}
+
+{% if user.is_authenticated %}
+<script>
+  window.location.href = "/"
+</script>
+{% else %}
+<form class="account-form" action="{% url 'account:login' %}" method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <div class="d-grid gap-2">
+    
+    <button class="btn btn-primary py-2 my-2 fw-bold" type="submit" value="Log-in">
+      Sign in
+    </button>
+  </div>
+  <div class="flex-column justify-content-center mx-auto">
+    <div class="text-center"><a href="{% url "account:register" %}">Create an account</a></div>
+    <div class="text-center"><a href="{% url "account:pwdreset" %}">Forgotten Password?</a></div>
+  </div>
+</form>
+{% endif %}
+
+{% endblock %}
